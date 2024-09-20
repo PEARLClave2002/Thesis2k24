@@ -1,8 +1,4 @@
----
-title: "CHAPTER 1: INTRODUCTION"
-format: pdf
-editor: visual
----
+***CHAPTER 1: INTRODUCTION***
 
 A Mixture Model is a probabilistic model that represents the overall data distribution as a combination of several distinct sub-distributions, known as components. Each component corresponds to a distinct group or cluster within the data, and the overall distribution is a weighted sum of these components. The weights reflect the proportion of data points belonging to each component.
 
@@ -20,24 +16,24 @@ However, Gaussian Mixture Model (GMM) has some limitations. Despite the EM algor
 
 Thus, the central problem addressed in this thesis is twofold:
 
-1.  **Theoretical**: How can the EM algorithm be optimized for Maximum Likelihood Estimation in GMM to ensure better convergence and accuracy in parameter estimation, especially in challenging datasets?
+**Theoretical**: How can the EM algorithm be optimized for Maximum Likelihood Estimation in GMM to ensure better convergence and accuracy in parameter estimation, especially in challenging datasets?
 
-2.  **Applied**: How can GMM be effectively applied to classification problems and be integrated into the GTM framework to enhance their utility in real-world data modeling?
+**Applied**: How can GMM be effectively applied to classification problems and be integrated into the GTM framework to enhance their utility in real-world data modeling?
 
-#### Objectives
+**Objectives**
 
 The study aims to address both theoretical and practical aspects of GMM, focusing on the role of the EM algorithm in parameter estimation and the application of GMM in classification and GTM. Specifically, the objectives are to:
 
-1.  **Explore the theoretical properties of Gaussian Mixture Models (GMM)**, focusing on how they model multimodal data and the assumptions underlying their use.
+1. Explore the theoretical properties of Gaussian Mixture Models (GMM), focusing on how they model multimodal data and the assumptions underlying their use.
 
-2.  **Examine the role of the Expectation-Maximization (EM) algorithm in Maximum Likelihood Estimation (MLE)** for GMM, including its convergence properties, potential limitations, and ways to optimize its performance for large or high-dimensional datasets.
+2. Examine the role of the Expectation-Maximization (EM) algorithm in Maximum Likelihood Estimation (MLE) for GMM, including its convergence properties, potential limitations, and ways to optimize its performance for large or high-dimensional datasets.
 
-3.  **Investigate the application of GMM in classification problems**, identifying the scenarios where GMM offers significant advantages in handling multimodal data and complex feature spaces.
+3. Investigate the application of GMM in classification problems, identifying the scenarios where GMM offers significant advantages in handling multimodal data and complex feature spaces.
 
-4.  **Explore the integration of GMM into the Generative Topographic Mapping (GTM) framework**, examining how GMM can contribute to this.
+4. Explore the integration of GMM into the Generative Topographic Mapping (GTM) framework, examining how GMM can contribute to this.
 
-5.  **Validate the theoretical insights through practical applications**, applying GMM to real-world classification tasks and GTM-based data analysis, and assessing their effectiveness in terms of accuracy, scalability, and computational efficiency.
+5. Validate the theoretical insights through practical applications, applying GMM to real-world classification tasks and GTM-based data analysis, and assessing their effectiveness in terms of accuracy, scalability, and computational efficiency.
 
-#### Scope and Limitation
+**Scope and Limitation**
 
 This thesis explores both the theoretical aspects and practical applications of Gaussian Mixture Model (GMM). It includes a detailed examination of GMM, covering their properties and estimation using the Expectation-Maximization (EM) algorithm for Maximum Likelihood Estimation. Special attention will be given to the behavior and performance of the EM algorithm across different datasets. The study will also investigate the use of GMM in classification problems and their integration into the Generative Topographic Mapping (GTM) framework.

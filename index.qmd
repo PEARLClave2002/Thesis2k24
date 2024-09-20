@@ -186,5 +186,3 @@ In conclusion, to get the MLE of the Gaussian Mixture Model we use the Expectati
 
 
 
-
-
