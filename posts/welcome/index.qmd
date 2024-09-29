@@ -43,5 +43,6 @@ The study aims to address both theoretical and practical aspects of GMM, focusin
 
 This thesis explores both the theoretical aspects and practical applications of Gaussian Mixture Model (GMM). It includes a detailed examination of GMM, covering their properties and estimation using the Expectation-Maximization (EM) algorithm for Maximum Likelihood Estimation. Special attention will be given to the behavior and performance of the EM algorithm across different datasets. The study will also investigate the use of GMM in classification problems and their integration into the Generative Topographic Mapping (GTM) framework.
 
-***CHAPTER 2***
+***CHAPTER 2: PRELIMINARY CONCEPTS***
+
 
