@@ -220,8 +220,8 @@ window.Quarto = {
 
 
 <p>A Gaussian mixture model is a probabilistic model that assumes all the data points are generated from a mixture of a finite number of Gaussian distributions with unknown parameters. When we say Probabilistic model it take into account the impact of random events or actions in predicting the potential occurence of future outcomes, thus it make decisions based on likelihoods and probabilities.</p>
-<p>GMMs being a probabilistic models, represents normally distributed subpopulations within an overall population, this gives us the idea that it may have more than two components. In fact, a Gaussian mixture model is parameterized by two types of values, the mixture component weights and the component means and variances/covariances. Estimating these said parameters is important in order to measure and diagnose the underlying true values of the population. However, estimating the parameters of the individual normal distribution components is a canonical in modeling data with GMMs.</p>
-<p>Furthermore, In frequentist probability theory, models are typically learnedby using the maximum likelihood estimation (MLE) techniques. MLE is an estimation method that allows us to use a sample to estimate the parameters of the probability distribution that generated the sample. It also seeks to maximize the probability or likelihood of the observed data given the model parameters. Unfortunately, finding the maximum likelihood solution for mixture models by differentiating the log-likelihood and solving for 0 is usually analytically impossible (McGonagle et. al). Thus, an algorithm that attempts to find maximum likelihood estimates for models with latent variables like Gaussian mixture models comes to light, called the Expectation-Maximization (EM) algorithm.</p>
+<p>GMMs being a probabilistic models, represents normally distributed subpopulations within an overall population, this gives us the idea that it may have more than two components. In fact, a Gaussian mixture model is parameterized by two types of values, the mixture component weights and the component means and variances/covariances. Estimating these said parameters is important in order to measure and diagnose the underlying true values of the population. However, estimating the parameters of the individual normal distribution components is a canonical problem in modeling data with GMMs.</p>
+<p>In frequentist probability theory, models are usually learned using maximum likelihood estimation (MLE) techniques. MLE is a method that allows us to estimate the parameters of the probability distribution that generated the sample using the sample itself. It aims to maximize the probability or likelihood of the observed data given the model parameters. However, finding the maximum likelihood solution for mixture models by differentiating the log-likelihood and solving for 0 is often analytically impossible (McGonagle et. al.). This led to the development of the Expectation-Maximization (EM) algorithm, which aims to find the most likely estimates for models with latent variables, such as Gaussian mixture models.</p>
 <p>Expectation-Maximization algorithm is an iterative algorithm which is a numerical technique for maximum likelihood estimation and is usually used when closed form expression for updating the model parameters can be calculated. It has a convenient property that the maximum likelihood of the data strictly increases with each subsequent iteration, meaning it is guaranteed to approach a local maximum or saddle point. EM algorithm has two steps, the Expectation (E-step) and the Maximization (M-step). The E-step is consist of calculating the expectation of the component assignments for each data point given the model parameters. While the M-step consist of maximizing the expectations calculated in the E-step with respect to the model parameters. This step consist of updating the values of the parameters.</p>
 <p>Before proceeding to the Maximum likelihood estimation of the Gaussian Mixture Model let’s have first a quick overview of the MLE of Normal Distribution.</p>
 <section id="mle-of-normal-distribution" class="level2">
@@ -271,34 +271,34 @@ L(\theta | X_1, \dots, X_n) = \prod_{i=1}^n \sum_{k=1}^K \pi_k \mathcal{N}(x_i; 
 <p><span class="math display">\[
 P(Z_i = k | X_i) = \frac{P(X_i | Z_i = k) P(Z_i = k)}{P(X_i)} = \frac{\pi_k N(\mu_k, \sigma^2_k)}{\sum_{k=1}^{K} \pi_k N(\mu_k, \sigma_k)} = \gamma_{Z_i}(k) \tag{2}
 \]</span></p>
-<p>Now we can rewrite equation (1), the derivative of the log-likelihood with respect to $ _k $, as follows:</p>
+<p>Now we can rewrite equation (1), the derivative of the log-likelihood with respect to <span class="math inline">\(\mu_k\)</span>, as follows:</p>
 <p><span class="math display">\[
 \sum_{i=1}^{n} \gamma_{Z_i}(k) (X_i - \mu_k) \sigma^2_k = 0
 \]</span></p>
-<p>Even though $_{Z_i}(k) $ depends on $_k $, we can cheat a bit and pretend that it doesn’t. Now we can solve for $_k $ in this equation to get:</p>
+<p>Even though <span class="math inline">\(\gamma_{Z_i}(k)\)</span> depends on <span class="math inline">\(\mu_k\)</span>, we can cheat a bit and pretend that it doesn’t. Now we can solve for <span class="math inline">\(\mu_k\)</span> in this equation to get:</p>
 <p><span class="math display">\[
 \hat{\mu}_k = \frac{\sum_{i=1}^{n} \gamma_{Z_i}(k) X_i}{\sum_{i=1}^{n} \gamma_{Z_i}(k)} = \frac{1}{N_k} \sum_{i=1}^{n} \gamma_{Z_i}(k) X_i \tag{3}
 \]</span></p>
-<p>Where we set $ N_k = <em>{i=1}^{n} </em>{Z_i}(k) $. We can think of $ N_k $ as the effective number of points assigned to component $ k $. We see that $ <em>k $ is therefore a weighted average of the data with weights $</em>{Z_i}(k) $.</p>
-<p>Similarly, if we apply a similar method to finding $^2_k $ and $ _k $, we find that:</p>
+<p>Where we set <span class="math inline">\(N_k =\sum_{i=1}^{n}\gamma_{Z_i}(k)\)</span>. We can think of <span class="math inline">\(N_k\)</span> as the effective number of points assigned to component <span class="math inline">\(k\)</span>. We see that <span class="math inline">\(\hat{\mu}_k\)</span> is therefore a weighted average of the data with weights <span class="math inline">\(\gamma_{Z_i}(k)\)</span>.</p>
+<p>Similarly, if we apply a similar method to finding <span class="math inline">\(\hat{\sigma}^2_k\)</span> and <span class="math inline">\(\hat{\pi}_k\)</span>, we find that:</p>
 <p><span class="math display">\[
 \hat{\sigma}^2_k = \frac{1}{N_k} \sum_{i=1}^{n} \gamma_{Z_i}(k) (X_i - \hat{\mu}_k)^2 \tag{4}
 \]</span></p>
 <p><span class="math display">\[
 \hat{\pi}_k = \frac{N_k}{n} \tag{5}
 \]</span></p>
-<p>Again, remember that $_{Z_i}(k) $ depends on the unknown parameters, so these equations are not closed-form expressions. This looks like a vicious circle. But, as Cosma Shalizi says, “one man’s vicious circle is another man’s successive approximation procedure.”</p>
+<p>Again, remember that <span class="math inline">\(\gamma_{Z_i}(k)\)</span> depends on the unknown parameters, so these equations are not closed-form expressions. This looks like a vicious circle. But, as Cosma Shalizi says, “one man’s vicious circle is another man’s successive approximation procedure.”</p>
 <p>We are now in the following situation:</p>
 <ul>
-<li>If we knew the parameters, we could compute the posterior probabilities $ _{Z_i}(k) $.</li>
-<li>If we knew the posteriors $ _{Z_i}(k) $, we could easily compute the parameters.</li>
+<li>If we knew the parameters, we could compute the posterior probabilities <span class="math inline">\(\gamma_{Z_i}(k)\)</span>.</li>
+<li>If we knew the posteriors <span class="math inline">\(\gamma_{Z_i}(k)\)</span>, we could easily compute the parameters.</li>
 </ul>
 <p>The EM algorithm, motivated by the two observations above, proceeds as follows:</p>
 <ol type="1">
-<li>Initialize the $_k $’s, $ _k $’s, and $_k $’s and evaluate the log-likelihood with these parameters.</li>
-<li><strong>E-step</strong>: Evaluate the posterior probabilities $_{Z_i}(k) $ using the current values of the $_k $’s and $_k $’s with equation (2).</li>
-<li><strong>M-step</strong>: Estimate new parameters $_k $, $^2_k $, and $_k $ with the current values of <span class="math inline">\(\gamma_{Z_i}(k)\)</span> using equations (3), (4), and (5).</li>
-<li>Evaluate the log-likelihood with the new parameter estimates. If the log-likelihood has changed by less than some small $$, stop. Otherwise, go back to step 2.</li>
+<li>Initialize the <span class="math inline">\(\mu_k\)</span>, <span class="math inline">\(\sigma_k\)</span>, and <span class="math inline">\(\pi_k\)</span> and evaluate the log-likelihood with these parameters.</li>
+<li><strong>E-step</strong>: Evaluate the posterior probabilities <span class="math inline">\(\gamma_{Z_i}(k)\)</span> using the current values of the <span class="math inline">\(\mu_k\)</span> and <span class="math inline">\(\sigma_k\)</span> with equation (2).</li>
+<li><strong>M-step</strong>: Estimate new parameters $_k $, <span class="math inline">\(\hat{\sigma}^2_k\)</span>, and <span class="math inline">\(\hat{\pi}_k\)</span> with the current values of <span class="math inline">\(\gamma_{Z_i}(k)\)</span> using equations (3), (4), and (5).</li>
+<li>Evaluate the log-likelihood with the new parameter estimates. If the log-likelihood has changed by less than some small <span class="math inline">\(\epsilon\)</span>, stop. Otherwise, go back to step 2.</li>
 </ol>
 <p>The EM algorithm is sensitive to the initial values of the parameters, so care must be taken in the first step. However, assuming the initial values are “valid,” one property of the EM algorithm is that the log-likelihood increases at every step. This invariant proves to be useful when debugging the algorithm in practice.</p>
 </section>
@@ -310,13 +310,13 @@ P(Z_i = k | X_i) = \frac{P(X_i | Z_i = k) P(Z_i = k)}{P(X_i)} = \frac{\pi_k N(\m
 \log(P(X | \Theta)) = \log\left(\sum_Z P(X, Z | \Theta)\right)
 \]</span></p>
 <p>where we’ve simply marginalized <span class="math inline">\(Z\)</span> out of the joint distribution.</p>
-<p>As we noted above, the existence of the sum inside the logarithm prevents us from applying the log to the densities, which results in a complicated expression for the MLE. Now suppose that we observed both <span class="math inline">\(X\)</span> and $Z $. We call ${X, Z} $ the complete data set, and we say $X $ is incomplete. As we noted previously, if we knew $Z $, the maximization would be easy.</p>
-<p>We typically don’t know <span class="math inline">\(Z\)</span>, but the information we do have about $Z $ is contained in the posterior $P(Z | X, ) $. Since we don’t know the complete log-likelihood, we consider its expectation under the posterior distribution of the latent variables. This corresponds to the E-step above. In the M-step, we maximize this expectation to find a new estimate for the parameters.</p>
-<p>In the E-step, we use the current value of the parameters <span class="math inline">\(\theta_0\)</span> to find the posterior distribution of the latent variables given by <span class="math inline">\(P(Z | X, \theta_0)\)</span>. This corresponds to the $_{Z_i}(k) $ in the previous section. We then use this to find the expectation of the complete data log-likelihood, with respect to this posterior, evaluated at an arbitrary $$. This expectation is denoted $ Q(, _0) $ and it equals:</p>
+<p>As we noted above, the existence of the sum inside the logarithm prevents us from applying the log to the densities, which results in a complicated expression for the MLE. Now suppose that we observed both <span class="math inline">\(X\)</span> and <span class="math inline">\(Z\)</span>. We call <span class="math inline">\(\{X, Z\}\)</span> the complete data set, and we say <span class="math inline">\(X\)</span> is incomplete. As we noted previously, if we knew <span class="math inline">\(Z\)</span>, the maximization would be easy.</p>
+<p>We typically don’t know <span class="math inline">\(Z\)</span>, but the information we do have about $Z $ is contained in the posterior <span class="math inline">\(P(Z | X, \Theta)\)</span>. Since we don’t know the complete log-likelihood, we consider its expectation under the posterior distribution of the latent variables. This corresponds to the E-step above. In the M-step, we maximize this expectation to find a new estimate for the parameters.</p>
+<p>In the E-step, we use the current value of the parameters <span class="math inline">\(\theta_0\)</span> to find the posterior distribution of the latent variables given by <span class="math inline">\(P(Z | X, \theta_0)\)</span>. This corresponds to the <span class="math inline">\(\gamma_{Z_i}(k)\)</span> in the previous section. We then use this to find the expectation of the complete data log-likelihood, with respect to this posterior, evaluated at an arbitrary <span class="math inline">\(\theta\)</span>. This expectation is denoted <span class="math inline">\(Q(\theta, \theta_0)\)</span> and it equals:</p>
 <p><span class="math display">\[
 Q(\theta, \theta_0) = \mathbb{E}_{Z|X, \theta_0} \left[\log(P(X, Z | \theta))\right] = \sum_Z P(Z | X, \theta_0) \log(P(X, Z | \theta))
 \]</span></p>
-<p>In the M-step, we determine the new parameter <span class="math inline">\(\hat{\theta}\)</span> by maximizing $ Q $:</p>
+<p>In the M-step, we determine the new parameter <span class="math inline">\(\hat{\theta}\)</span> by maximizing <span class="math inline">\(Q\)</span>:</p>
 <p><span class="math display">\[
 \hat{\theta} = \arg\max_{\theta} Q(\theta, \theta_0)
 \]</span></p>
@@ -339,21 +339,21 @@ P(X, Z | \mu, \sigma, \pi) = \prod_{i=1}^{n} \prod_{k=1}^{K} \pi_k^{I(Z_i = k)} 
 <p><span class="math display">\[
 = \sum_{i=1}^{n} \sum_{k=1}^{K} \mathbb{E}_{Z|X}[I(Z_i = k)] \left( \log(\pi_k) + \log(N(x_i | \mu_k, \sigma_k)) \right)
 \]</span></p>
-<p>Since $_{Z|X}[I(Z_i = k)] = P(Z_i = k | X) $, we see that this is simply <span class="math inline">\(\gamma_{Z_i}(k)\)</span> which we computed in the previous section. Hence, we have:</p>
+<p>Since <span class="math inline">\(\mathbb{E}_{Z|X}[I(Z_i = k)] = P(Z_i = k | X)\)</span>, we see that this is simply <span class="math inline">\(\gamma_{Z_i}(k)\)</span> which we computed in the previous section. Hence, we have:</p>
 <p><span class="math display">\[
 \mathbb{E}_{Z|X}\left[\log(P(X, Z | \mu, \sigma, \pi))\right] = \sum_{i=1}^{n} \sum_{k=1}^{K} \gamma_{Z_i}(k) \left( \log(\pi_k) + \log(N(x_i | \mu_k, \sigma_k)) \right)
 \]</span></p>
-<p>EM proceeds as follows: first choose initial values for <span class="math inline">\(\mu, \sigma, \pi\)</span> and use these in the E-step to evaluate the <span class="math inline">\(\gamma_{Z_i}(k)\)</span>. Then, with $_{Z_i}(k) $ fixed, maximize the expected complete log-likelihood above with respect to <span class="math inline">\(\mu_k, \sigma_k\)</span> and $_k $. This leads to the closed-form solutions we derived in the previous section.</p>
+<p>EM proceeds as follows: first choose initial values for <span class="math inline">\(\mu, \sigma, \pi\)</span> and use these in the E-step to evaluate the <span class="math inline">\(\gamma_{Z_i}(k)\)</span>. Then, with <span class="math inline">\(\gamma_{Z_i}(k)\)</span> fixed, maximize the expected complete log-likelihood above with respect to <span class="math inline">\(\mu_k, \sigma_k\)</span> and <span class="math inline">\(\pi_k\)</span>. This leads to the closed-form solutions we derived in the previous section.</p>
 </section>
 <section id="example" class="level3">
 <h3 class="anchored" data-anchor-id="example">Example</h3>
-<p>In this example, we will assume our mixture components are fully specified Gaussian distributions (i.e., the means and variances are known), and we are interested in finding the maximum likelihood estimates of the $_k $’s.</p>
-<p>Assume we have $ K = 2 $ components, so that:</p>
+<p>In this example, we will assume our mixture components are fully specified Gaussian distributions (i.e., the means and variances are known), and we are interested in finding the maximum likelihood estimates of the $_k $.</p>
+<p>Assume we have <span class="math inline">\(K = 2\)</span> components, so that:</p>
 <ul>
-<li>$X_i | Z_i = 0 N(5, 1.5) $</li>
-<li>$X_i | Z_i = 1 N(10, 2) $</li>
+<li><span class="math inline">\(X_i | Z_i = 0 \sim N(5, 1.5)\)</span></li>
+<li><span class="math inline">\(X_i | Z_i = 1 \sim N(10, 2)\)</span></li>
 </ul>
-<p>The true mixture proportions will be $P(Z_i = 0) = 0.25 $ and $P(Z_i = 1) = 0.75 $.</p>
+<p>The true mixture proportions will be <span class="math inline">\(P(Z_i = 0) = 0.25\)</span> and <span class="math inline">\(P(Z_i = 1) = 0.75\)</span>.</p>
 <p>First, we simulate data from this mixture model:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mixture components</span></span>
@@ -375,7 +375,7 @@ P(X, Z | \mu, \sigma, \pi) = \prod_{i=1}^{n} \prod_{k=1}^{K} \pi_k^{I(Z_i = k)} 
 </div>
 </div>
 <p>Now we write a function to compute the log-likelihood for the incomplete data, assuming the parameters are known. This will be used to determine convergence:</p>
-<p>[ () = <em>{i=1}^{n} ( </em>{k=1}^{K} N(x_i; _k, ^2_k) L[i,k] ) ]</p>
+<p>[ () = <em>{i=1}^{n} ( </em>{k=1}^{K} N(x_i; _k, ^2_k)) ]</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>compute.log.lik <span class="ot">&lt;-</span> <span class="cf">function</span>(L, w) {</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  L[,<span class="dv">1</span>] <span class="ot">=</span> L[,<span class="dv">1</span>]<span class="sc">*</span>w[<span class="dv">1</span>]</span>
@@ -429,7 +429,7 @@ P(X, Z | \mu, \sigma, \pi) = \prod_{i=1}^{n} \prod_{k=1}^{K} \pi_k^{I(Z_i = k)} 
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ee <span class="ot">&lt;-</span> <span class="fu">mixture.EM</span>(<span class="at">w.init=</span><span class="fu">c</span>(<span class="fl">0.5</span>,<span class="fl">0.5</span>), L)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Estimate = ("</span>, <span class="fu">round</span>(ee[[<span class="dv">1</span>]][<span class="dv">1</span>],<span class="dv">2</span>), <span class="st">","</span>, <span class="fu">round</span>(ee[[<span class="dv">1</span>]][<span class="dv">2</span>],<span class="dv">2</span>), <span class="st">")"</span>, <span class="at">sep=</span><span class="st">""</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Estimate = (0.26,0.74)"</code></pre>
+<pre><code>[1] "Estimate = (0.23,0.77)"</code></pre>
 </div>
 </div>
 <p>Finally, we inspect the evolution of the log-likelihood and note that it is strictly increases:</p>
@@ -443,9 +443,13 @@ P(X, Z | \mu, \sigma, \pi) = \prod_{i=1}^{n} \prod_{k=1}^{K} \pi_k^{I(Z_i = k)} 
 </div>
 </div>
 </div>
-
-
 </section>
+</section>
+<section id="reference" class="level2">
+<h2 class="anchored" data-anchor-id="reference">Reference</h2>
+<p>Bonakdarpour, M. (2016, January 22). Introduction to EM: Gaussian Mixture Models. Introduction to em: Gaussian mixture models. https://stephens999.github.io/fiveMinuteStats/intro_to_em.html</p>
+
+
 </section>
 
 </main> <!-- /main -->
