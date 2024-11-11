@@ -69,7 +69,7 @@ However, this research is limited to theoretical exploration and small-scale sim
 
 To explore the theoretical aspects of Expectation-Maximization (EM) Algorithm in Gaussian Mixture Models and its application on Mode detections, it is important to build a strong foundation in several preliminary concepts. The following are the preliminary concepts for this study;
 
-**Probability Theory** **Random Variables and Probability Distributions**
+**Probability Theory** **Random Variables**
 
 Definition 2.1 : Random Variables
 
@@ -79,4 +79,44 @@ Example 2.1
 
 :   Consider the experiment of tossing a single coin. Let the random variable $X$ denote the number of heads. $\Omega = \{ head, tail\}$, and $X(\omega) = 1$ if $\omega = head$, and $X(\omega)=0$ if $\omega = tail$; so, the randomm variable $X$ associates a real number with each outcome of the experiment. We called $X$ a random variable so mathematically speaking we should show that it satisfies the definition; that is, we should show that $\{\omega : X(\omega) \leq r \}$ belongs to $A$ for every real number $r$. $A$ consists of the four subsets: $\phi$ , {head}, {tail}, and $\Omega$ . Now, if $r< 0$ , $\{\omega : X(\omega) \leq r \} = \phi$ ; and if $0\leq r<1, \{\omega: X(\omega) \leq r\} =${tail}; and if $r \geq 1, \{ \omega: X(\omega) \leq r \} = \Omega =${head, tail}. Hence, for each $r$ the set $\{\omega : X(\omega) \leq r\}$ belongs to $A$; so $X(*)$ is a random variable.
 
+Continuous Random Variable
+
 :   
+
+Probability Density Function of a Continuous Random Variable
+
+:   
+
+Expectation
+
+:   
+
+Mean
+
+:   
+
+Variance
+
+:   
+
+Standard Deviation
+
+:   
+
+Special Parametric Families of Univariate Distributions
+
+:   
+
+Continuous Distributions
+
+:   
+
+Normal Distribution
+
+:   A random variable $X$ is defined to be normally distributed if its density is given by
+
+    $$
+    f_x (x) = f_x (x; \mu, \sigma) =
+    $$
+
+    where the parameters $\mu$ and $\sigma$ satisfy
