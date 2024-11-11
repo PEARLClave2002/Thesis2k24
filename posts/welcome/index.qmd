@@ -23,6 +23,7 @@ date: "2024-09-20"
 
 
 **1.2 Statement of the Problem**
+
   The Expectation-Maximization (EM) algorithm has proven to be a powerful tool in statistical analysis, particularly in scenarios involving latent variables, where direct observations are incomplete or hidden. Despite its widespread use, the theoretical foundations and procedural details of the EM algorithm remain insufficiently explored in the undergraduate level of our department, especially in the context of mode detection. Mode detection, which refers to identifying the peaks or clusters in a probability distribution, is a critical task in many machine learning and statistical applications (Carreira-Perpinan 2000). However, its connection to the EM algorithm, specifically within Gaussian Mixture Models (GMMs), has not been fully explained in terms of both theoretical derivation and practical application within the undergraduate level of our program of study here in our department.
   
   This study seeks to address this gap by investigating the theoretical foundations of the EM algorithm, exploring its derivation and step-by-step procedure. Furthermore, it aims to examine how the EM algorithm can be effectively applied to mode detection within GMMs, with a focus on its role in identifying distinct high-density regions in multimodal data. By understanding the theoretical and practical aspects of the EM algorithm in mode detection, this study intends to provide insights into its effectiveness and offer a deeper understanding of its applications in statistical modeling and clustering.
@@ -61,9 +62,11 @@ date: "2024-09-20"
 **References**
 
 McLachlan, G., & Krishnan, T. (2007). The EM Algorithm and Extensions. Wiley-Interscience.
+
 Banfield, J. D., & Raftery, A. E. (1993). "Model-Based Gaussian and Non-Gaussian Clustering." Biometrics, 49(3), 803-821.
 
 Stephens, M. (2023). "Gaussian Mixture Models and the EM Algorithm." In Handbook of Mixture Models (pp. 305-330).
 
 Bishop, C. M. (2006). Pattern Recognition and Machine Learning. Springer.
+
 Dempster, A. P., Laird, N. M., & Rubin, D. B. (1977). "Maximum Likelihood from Incomplete Data via the EM Algorithm." Journal of the Royal Statistical Society: Series B (Methodological), 39(1), 1-38.
