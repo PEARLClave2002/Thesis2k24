@@ -55,15 +55,15 @@ However, this research is limited to theoretical exploration and small-scale sim
 
 **References**
 
-McLachlan, G., & Krishnan, T. (2007). The EM Algorithm and Extensions. Wiley-Interscience.
+-   McLachlan, G., & Krishnan, T. (2007). The EM Algorithm and Extensions. Wiley-Interscience.
 
-Banfield, J. D., & Raftery, A. E. (1993). "Model-Based Gaussian and Non-Gaussian Clustering." Biometrics, 49(3), 803-821.
+-   Banfield, J. D., & Raftery, A. E. (1993). "Model-Based Gaussian and Non-Gaussian Clustering." Biometrics, 49(3), 803-821.
 
-Stephens, M. (2023). "Gaussian Mixture Models and the EM Algorithm." In Handbook of Mixture Models (pp. 305-330).
+-   Stephens, M. (2023). "Gaussian Mixture Models and the EM Algorithm." In Handbook of Mixture Models (pp. 305-330).
 
-Bishop, C. M. (2006). Pattern Recognition and Machine Learning. Springer.
+-   Bishop, C. M. (2006). Pattern Recognition and Machine Learning. Springer.
 
-Dempster, A. P., Laird, N. M., & Rubin, D. B. (1977). "Maximum Likelihood from Incomplete Data via the EM Algorithm." Journal of the Royal Statistical Society: Series B (Methodological), 39(1), 1-38.
+-   Dempster, A. P., Laird, N. M., & Rubin, D. B. (1977). "Maximum Likelihood from Incomplete Data via the EM Algorithm." Journal of the Royal Statistical Society: Series B (Methodological), 39(1), 1-38.
 
 ***CHAPTER 2: PRELIMINARY CONCEPTS***
 
@@ -73,4 +73,10 @@ To explore the theoretical aspects of Expectation-Maximization (EM) Algorithm in
 
 Definition 2.1 : Random Variables
 
-:   A random variable represents the outcomes of a process
+:   For a given probability space ($\Omega$, $A$, $P[*]$), a *random variable*, denoted by $X$ or $X(*)$, is a function with domain $\Omega$ and counterdomain the real line. The function $X(*)$ must be such that the set $A_r$, defined by $A_r = \{ \omega : X(\omega) \leq r \}$ , belongs to $A$ for every real number $r$.
+
+Example 2.1
+
+:   Consider the experiment of tossing a single coin. Let the random variable $X$ denote the number of heads. $\Omega = \{ head, tail\}$, and $X(\omega) = 1$ if $\omega = head$, and $X(\omega)=0$ if $\omega = tail$; so, the randomm variable $X$ associates a real number with each outcome of the experiment. We called $X$ a random variable so mathematically speaking we should show that it satisfies the definition; that is, we should show that $\{\omega : X(\omega) \leq r \}$ belongs to $A$ for every real number $r$. $A$ consists of the four subsets: $\phi$ , {head}, {tail}, and $\Omega$ . Now, if $r< 0$ , $\{\omega : X(\omega) \leq r \} = \phi$ ; and if $0\leq r<1, \{\omega: X(\omega) \leq r\} =${tail}; and if $r \geq 1, \{ \omega: X(\omega) \leq r \} = \Omega =${head, tail}. Hence, for each $r$ the set $\{\omega : X(\omega) \leq r\}$ belongs to $A$; so $X(*)$ is a random variable.
+
+:   
