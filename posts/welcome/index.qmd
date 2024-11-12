@@ -73,50 +73,108 @@ To explore the theoretical aspects of Expectation-Maximization (EM) Algorithm in
 
 Definition 2.1 : Random Variables
 
-:   For a given probability space ($\Omega$, $A$, $P[*]$), a *random variable*, denoted by $X$ or $X(*)$, is a function with domain $\Omega$ and counterdomain the real line. The function $X(*)$ must be such that the set $A_r$, defined by $A_r = \{ \omega : X(\omega) \leq r \}$ , belongs to $A$ for every real number $r$.
+:   For a given probability space ($\Omega$, $\mathscr{A}$, $P[\cdot]$), a *random variable*, denoted by $X$ or $X(\cdot)$, is a function with domain $\Omega$ and counterdomain the real line. The function $X(\cdot)$ must be such that the set $A_r$, defined by $A_r = \{ \omega : X(\omega) \leq r \}$ , belongs to $\mathscr{A}$ for every real number $r$.
 
 Example 2.1
 
-:   Consider the experiment of tossing a single coin. Let the random variable $X$ denote the number of heads. $\Omega = \{ head, tail\}$, and $X(\omega) = 1$ if $\omega = head$, and $X(\omega)=0$ if $\omega = tail$; so, the randomm variable $X$ associates a real number with each outcome of the experiment. We called $X$ a random variable so mathematically speaking we should show that it satisfies the definition; that is, we should show that $\{\omega : X(\omega) \leq r \}$ belongs to $A$ for every real number $r$. $A$ consists of the four subsets: $\phi$ , {head}, {tail}, and $\Omega$ . Now, if $r< 0$ , $\{\omega : X(\omega) \leq r \} = \phi$ ; and if $0\leq r<1, \{\omega: X(\omega) \leq r\} =${tail}; and if $r \geq 1, \{ \omega: X(\omega) \leq r \} = \Omega =${head, tail}. Hence, for each $r$ the set $\{\omega : X(\omega) \leq r\}$ belongs to $A$; so $X(*)$ is a random variable.
+:   Consider the experiment of tossing a single coin. Let the random variable $X$ denote the number of heads. $\Omega = \{ head, tail\}$, and $X(\omega) = 1$ if $\omega = head$, and $X(\omega)=0$ if $\omega = tail$; so, the randomm variable $X$ associates a real number with each outcome of the experiment. We called $X$ a random variable so mathematically speaking we should show that it satisfies the definition; that is, we should show that $\{\omega : X(\omega) \leq r \}$ belongs to $A$ for every real number $r$. $A$ consists of the four subsets: $\phi$ , {head}, {tail}, and $\Omega$ . Now, if $r< 0$ , $\{\omega : X(\omega) \leq r \} = \phi$ ; and if $0\leq r<1, \{\omega: X(\omega) \leq r\} =${tail}; and if $r \geq 1, \{ \omega: X(\omega) \leq r \} = \Omega =${head, tail}. Hence, for each $r$ the set $\{\omega : X(\omega) \leq r\}$ belongs to $A$; so $X(\cdot)$ is a random variable.
 
-Continuous Random Variable
+Definition 2.2: Continuous Random Variable
+
+:   A random variable $X$ is called *continuous* if there exists a function $f_x(\cdot)$ such that $F_x (x) = \int_{-\infty}^{x} f_x(u)du$ for every real number $x$. The cumulative distribution $F_x (\cdot)$ of a continuous random variable $X$ is called *absolutely continuous*.
+
+Definition 2.3: Probability Density Function of a Continuous Random Variable
+
+:   If $X$ is a continouos random variable the $f_x (\cdot)$ in $F_x(x) = \int_{-\infty}^{x} f_x(u)du$ is called the *probability density function* of $X$.
+
+Definition 2.4: Probability Density Function
+
+:   Any function $f(\cdot)$ with domain the real line and counter domain $[0, \infty]$ is defined to be a *probability density function* if and only if
+
+    \(i\) $f(x)\geq0$ for all $x$.
+
+    \(ii\) $\int_{-\infty}^{\infty} f(x)dx = 1$
+
+Definition 2.5: Mean
+
+:   Let $X$ be a random variable. The *mean* of $X$, denoted by $\mu_x$ or $\mathscr{E}[X]$ is defined by:
+
+    \(i\) $\mathscr{E}[X] =\sum x_i f_x (x_i)$
+
+    if $X$ is discrete with mass points $x_1, x_2,\dots , x_j,\dots$
+
+    \(ii\) $\mathscr{E}[X] = \int_{-\infty}^{\infty} xf_x(x)dx$
+
+    if $X$ is continuous with probability density function $f_x(x)$.
+
+    \(iii\) $\mathscr{E}[X] = \int_{0}^{\infty} [1-F_x(x)]dx - \int_{-\infty}^{0} F_x(x)dx$
+
+    for an arbitrary random variable $X$.
+
+Example 2.5 
+
+:   Let $X$ be a continuous random variable with probability density function $f_x(x)=\lambda e ^{\lambda x} I_{[0,\infty)} (x)$.
+
+    $$
+    \mathscr{E}[X] = \int_{-\infty}^{\infty} xf_x(x)dx = \int_{0}^{\infty} x\lambda e^{-\lambda x} dx = \frac{1}{\lambda}
+    $$
+
+    The corresponding cumulative distribution function is
+
+    $$
+    F_x(x) =(1-e^{\lambda x})I_{[0,\infty)}(x);so \mathscr{E}[X]=\int_{0}^{\infty}[1-F_x(x)]dx -\int_{-\infty}^{0}F_x(x)dx=\int_{0}^{\infty}(1-1+e^{-\lambda x})dx=\frac{1}{\lambda}
+    $$
+
+Definition 2.6: Variance
+
+:   Let $X$ be a random variable, and let $\mu_x$ be $\mathscr{E}[X]$. The *variance* of $X$, denoted by $\sigma_{x}^{2}$ or $var[X]$, is defined by
+
+    \(i\) $var[X]=\sum_j(x_j -\mu_x)^2f_x(x_j)$
+
+    if $X$ is discrete with mass points $x_1, x_2,\dots ,x_j,\dots$
+
+    \(ii\) $var[X] =\int_{-\infty}^{\infty} (x-\mu_x)^2f_x(x)dx$
+
+    if $X$ is continuous with probability density function $f_x(x)$.
+
+    \(iii\) $var[X]=\int_{0}^{\infty} 2x[1-F_x(x)+F_x(-x)]dx-\mu_{x}^2$
+
+    for an arbitrary random variable $X$.
+
+Definition 2.7: Standard Deviation
+
+:   If $X$ is a random variable, the *standard deviation* of $X$ , denoted by $\sigma_x$, is defined as $+\sqrt{var[X]}$.
+
+Example 2.7
 
 :   
 
-Probability Density Function of a Continuous Random Variable
+Definition 2.8 Expectation
+
+:   Lat $X$ be a random variable and $g(\cdot)$ be a function with both domain and counterdomain the real line. The *expectation* or *expected value* of the function $g(\cdot)$ of the random variable $X$, denoted by $\mathscr{E}[g(X)]$, is defined by:
+
+    \(i\) $\mathscr{E}[g(X)] - \sum_j g(x_j)f_x(x_j)$
+
+    if $X$ is discrete with mass points $x_1, x_2, \dots , x_j, \dots$(provided this series is absolutely convergent.
+
+    \(ii\) $\mathscr{E}[g(X)]=\int_{-\infty}^{\infty}g(x)f_x(x)dx$
+
+    if $X$ is continuous with probability density function $f_x(x)$ (provided $\int_{-\infty}^{\infty}|g(x)|f_x(x)dx<\infty$).\*
+
+Definition 2.8: Special Parametric Families of Univariate Distributions
 
 :   
 
-Expectation
+Definition 2.9: Continuous Distributions
 
 :   
 
-Mean
-
-:   
-
-Variance
-
-:   
-
-Standard Deviation
-
-:   
-
-Special Parametric Families of Univariate Distributions
-
-:   
-
-Continuous Distributions
-
-:   
-
-Normal Distribution
+Definition 2.10: Normal Distribution
 
 :   A random variable $X$ is defined to be normally distributed if its density is given by
 
     $$
-    f_x (x) = f_x (x; \mu, \sigma) =
+    f_x (x) = f_x (x; \mu, \sigma) = \frac{1}{\sqrt{2\pi\sigma}}e^{{\frac(-(x-\mu)^2}/{2\sigma^2}}
     $$
 
-    where the parameters $\mu$ and $\sigma$ satisfy
+    where the parameters $\mu$ and $\sigma$ satisfy $-\infty<\mu<\infty$ and $\sigma>0$. Any distribution defined by a density function given in Eq.(24) is called a *normal distribution.*

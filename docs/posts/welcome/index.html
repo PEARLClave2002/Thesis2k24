@@ -222,45 +222,82 @@ window.Quarto = {
 <dl>
 <dt>Definition 2.1 : Random Variables</dt>
 <dd>
-<p>For a given probability space (<span class="math inline">\(\Omega\)</span>, <span class="math inline">\(A\)</span>, <span class="math inline">\(P[*]\)</span>), a <em>random variable</em>, denoted by <span class="math inline">\(X\)</span> or <span class="math inline">\(X(*)\)</span>, is a function with domain <span class="math inline">\(\Omega\)</span> and counterdomain the real line. The function <span class="math inline">\(X(*)\)</span> must be such that the set <span class="math inline">\(A_r\)</span>, defined by <span class="math inline">\(A_r = \{ \omega : X(\omega) \leq r \}\)</span> , belongs to <span class="math inline">\(A\)</span> for every real number <span class="math inline">\(r\)</span>.</p>
+<p>For a given probability space (<span class="math inline">\(\Omega\)</span>, <span class="math inline">\(\mathscr{A}\)</span>, <span class="math inline">\(P[\cdot]\)</span>), a <em>random variable</em>, denoted by <span class="math inline">\(X\)</span> or <span class="math inline">\(X(\cdot)\)</span>, is a function with domain <span class="math inline">\(\Omega\)</span> and counterdomain the real line. The function <span class="math inline">\(X(\cdot)\)</span> must be such that the set <span class="math inline">\(A_r\)</span>, defined by <span class="math inline">\(A_r = \{ \omega : X(\omega) \leq r \}\)</span> , belongs to <span class="math inline">\(\mathscr{A}\)</span> for every real number <span class="math inline">\(r\)</span>.</p>
 </dd>
 <dt>Example 2.1</dt>
 <dd>
-<p>Consider the experiment of tossing a single coin. Let the random variable <span class="math inline">\(X\)</span> denote the number of heads. <span class="math inline">\(\Omega = \{ head, tail\}\)</span>, and <span class="math inline">\(X(\omega) = 1\)</span> if <span class="math inline">\(\omega = head\)</span>, and <span class="math inline">\(X(\omega)=0\)</span> if <span class="math inline">\(\omega = tail\)</span>; so, the randomm variable <span class="math inline">\(X\)</span> associates a real number with each outcome of the experiment. We called <span class="math inline">\(X\)</span> a random variable so mathematically speaking we should show that it satisfies the definition; that is, we should show that <span class="math inline">\(\{\omega : X(\omega) \leq r \}\)</span> belongs to <span class="math inline">\(A\)</span> for every real number <span class="math inline">\(r\)</span>. <span class="math inline">\(A\)</span> consists of the four subsets: <span class="math inline">\(\phi\)</span> , {head}, {tail}, and <span class="math inline">\(\Omega\)</span> . Now, if <span class="math inline">\(r&lt; 0\)</span> , <span class="math inline">\(\{\omega : X(\omega) \leq r \} = \phi\)</span> ; and if <span class="math inline">\(0\leq r&lt;1, \{\omega: X(\omega) \leq r\} =\)</span>{tail}; and if <span class="math inline">\(r \geq 1, \{ \omega: X(\omega) \leq r \} = \Omega =\)</span>{head, tail}. Hence, for each <span class="math inline">\(r\)</span> the set <span class="math inline">\(\{\omega : X(\omega) \leq r\}\)</span> belongs to <span class="math inline">\(A\)</span>; so <span class="math inline">\(X(*)\)</span> is a random variable.</p>
+<p>Consider the experiment of tossing a single coin. Let the random variable <span class="math inline">\(X\)</span> denote the number of heads. <span class="math inline">\(\Omega = \{ head, tail\}\)</span>, and <span class="math inline">\(X(\omega) = 1\)</span> if <span class="math inline">\(\omega = head\)</span>, and <span class="math inline">\(X(\omega)=0\)</span> if <span class="math inline">\(\omega = tail\)</span>; so, the randomm variable <span class="math inline">\(X\)</span> associates a real number with each outcome of the experiment. We called <span class="math inline">\(X\)</span> a random variable so mathematically speaking we should show that it satisfies the definition; that is, we should show that <span class="math inline">\(\{\omega : X(\omega) \leq r \}\)</span> belongs to <span class="math inline">\(A\)</span> for every real number <span class="math inline">\(r\)</span>. <span class="math inline">\(A\)</span> consists of the four subsets: <span class="math inline">\(\phi\)</span> , {head}, {tail}, and <span class="math inline">\(\Omega\)</span> . Now, if <span class="math inline">\(r&lt; 0\)</span> , <span class="math inline">\(\{\omega : X(\omega) \leq r \} = \phi\)</span> ; and if <span class="math inline">\(0\leq r&lt;1, \{\omega: X(\omega) \leq r\} =\)</span>{tail}; and if <span class="math inline">\(r \geq 1, \{ \omega: X(\omega) \leq r \} = \Omega =\)</span>{head, tail}. Hence, for each <span class="math inline">\(r\)</span> the set <span class="math inline">\(\{\omega : X(\omega) \leq r\}\)</span> belongs to <span class="math inline">\(A\)</span>; so <span class="math inline">\(X(\cdot)\)</span> is a random variable.</p>
 </dd>
-<dt>Continuous Random Variable</dt>
+<dt>Definition 2.2: Continuous Random Variable</dt>
+<dd>
+<p>A random variable <span class="math inline">\(X\)</span> is called <em>continuous</em> if there exists a function <span class="math inline">\(f_x(\cdot)\)</span> such that <span class="math inline">\(F_x (x) = \int_{-\infty}^{x} f_x(u)du\)</span> for every real number <span class="math inline">\(x\)</span>. The cumulative distribution <span class="math inline">\(F_x (\cdot)\)</span> of a continuous random variable <span class="math inline">\(X\)</span> is called <em>absolutely continuous</em>.</p>
+</dd>
+<dt>Definition 2.3: Probability Density Function of a Continuous Random Variable</dt>
+<dd>
+<p>If <span class="math inline">\(X\)</span> is a continouos random variable the <span class="math inline">\(f_x (\cdot)\)</span> in <span class="math inline">\(F_x(x) = \int_{-\infty}^{x} f_x(u)du\)</span> is called the <em>probability density function</em> of <span class="math inline">\(X\)</span>.</p>
+</dd>
+<dt>Definition 2.4: Probability Density Function</dt>
+<dd>
+<p>Any function <span class="math inline">\(f(\cdot)\)</span> with domain the real line and counter domain <span class="math inline">\([0, \infty]\)</span> is defined to be a <em>probability density function</em> if and only if</p>
+<p>(i) <span class="math inline">\(f(x)\geq0\)</span> for all <span class="math inline">\(x\)</span>.</p>
+<p>(ii) <span class="math inline">\(\int_{-\infty}^{\infty} f(x)dx = 1\)</span></p>
+</dd>
+<dt>Definition 2.5: Mean</dt>
+<dd>
+<p>Let <span class="math inline">\(X\)</span> be a random variable. The <em>mean</em> of <span class="math inline">\(X\)</span>, denoted by <span class="math inline">\(\mu_x\)</span> or <span class="math inline">\(\mathscr{E}[X]\)</span> is defined by:</p>
+<p>(i) <span class="math inline">\(\mathscr{E}[X] =\sum x_i f_x (x_i)\)</span></p>
+<p>if <span class="math inline">\(X\)</span> is discrete with mass points <span class="math inline">\(x_1, x_2,\dots , x_j,\dots\)</span></p>
+<p>(ii) <span class="math inline">\(\mathscr{E}[X] = \int_{-\infty}^{\infty} xf_x(x)dx\)</span></p>
+<p>if <span class="math inline">\(X\)</span> is continuous with probability density function <span class="math inline">\(f_x(x)\)</span>.</p>
+<p>(iii) <span class="math inline">\(\mathscr{E}[X] = \int_{0}^{\infty} [1-F_x(x)]dx - \int_{-\infty}^{0} F_x(x)dx\)</span></p>
+<p>for an arbitrary random variable <span class="math inline">\(X\)</span>.</p>
+</dd>
+<dt>Example 2.5</dt>
+<dd>
+<p>Let <span class="math inline">\(X\)</span> be a continuous random variable with probability density function <span class="math inline">\(f_x(x)=\lambda e ^{\lambda x} I_{[0,\infty)} (x)\)</span>.</p>
+<p><span class="math display">\[
+\mathscr{E}[X] = \int_{-\infty}^{\infty} xf_x(x)dx = \int_{0}^{\infty} x\lambda e^{-\lambda x} dx = \frac{1}{\lambda}
+\]</span></p>
+<p>The corresponding cumulative distribution function is</p>
+<p><span class="math display">\[
+F_x(x) =(1-e^{\lambda x})I_{[0,\infty)}(x);so \mathscr{E}[X]=\int_{0}^{\infty}[1-F_x(x)]dx -\int_{-\infty}^{0}F_x(x)dx=\int_{0}^{\infty}(1-1+e^{-\lambda x})dx=\frac{1}{\lambda}
+\]</span></p>
+</dd>
+<dt>Definition 2.6: Variance</dt>
+<dd>
+<p>Let <span class="math inline">\(X\)</span> be a random variable, and let <span class="math inline">\(\mu_x\)</span> be <span class="math inline">\(\mathscr{E}[X]\)</span>. The <em>variance</em> of <span class="math inline">\(X\)</span>, denoted by <span class="math inline">\(\sigma_{x}^{2}\)</span> or <span class="math inline">\(var[X]\)</span>, is defined by</p>
+<p>(i) <span class="math inline">\(var[X]=\sum_j(x_j -\mu_x)^2f_x(x_j)\)</span></p>
+<p>if <span class="math inline">\(X\)</span> is discrete with mass points <span class="math inline">\(x_1, x_2,\dots ,x_j,\dots\)</span></p>
+<p>(ii) <span class="math inline">\(var[X] =\int_{-\infty}^{\infty} (x-\mu_x)^2f_x(x)dx\)</span></p>
+<p>if <span class="math inline">\(X\)</span> is continuous with probability density function <span class="math inline">\(f_x(x)\)</span>.</p>
+<p>(iii) <span class="math inline">\(var[X]=\int_{0}^{\infty} 2x[1-F_x(x)+F_x(-x)]dx-\mu_{x}^2\)</span></p>
+<p>for an arbitrary random variable <span class="math inline">\(X\)</span>.</p>
+</dd>
+<dt>Definition 2.7: Standard Deviation</dt>
+<dd>
+<p>If <span class="math inline">\(X\)</span> is a random variable, the <em>standard deviation</em> of <span class="math inline">\(X\)</span> , denoted by <span class="math inline">\(\sigma_x\)</span>, is defined as <span class="math inline">\(+\sqrt{var[X]}\)</span>.</p>
+</dd>
+<dt>Example 2.7</dt>
 <dd>
 
 </dd>
-<dt>Probability Density Function of a Continuous Random Variable</dt>
+<dt>Definition 2.8 Expectation</dt>
+<dd>
+<p>Lat <span class="math inline">\(X\)</span> be a random variable and <span class="math inline">\(g(\cdot)\)</span> be a function with both domain and counterdomain the real line. The <em>expectation</em> or <em>expected value</em> of the function <span class="math inline">\(g(\cdot)\)</span> of the random variable <span class="math inline">\(X\)</span>, denoted by <span class="math inline">\(\mathscr{E}[g(X)]\)</span>, is defined by:</p>
+<p>(i) <span class="math inline">\(\mathscr{E}[g(X)] - \sum_j g(x_j)f_x(x_j)\)</span></p>
+<p>if <span class="math inline">\(X\)</span> is discrete with mass points <span class="math inline">\(x_1, x_2, \dots , x_j, \dots\)</span>(provided this series is absolutely convergent.</p>
+<p>(ii) <span class="math inline">\(\mathscr{E}[g(X)]=\int_{-\infty}^{\infty}g(x)f_x(x)dx\)</span></p>
+<p>if <span class="math inline">\(X\)</span> is continuous with probability density function <span class="math inline">\(f_x(x)\)</span> (provided <span class="math inline">\(\int_{-\infty}^{\infty}|g(x)|f_x(x)dx&lt;\infty\)</span>).*</p>
+</dd>
+<dt>Definition 2.8: Special Parametric Families of Univariate Distributions</dt>
 <dd>
 
 </dd>
-<dt>Expectation</dt>
+<dt>Definition 2.9: Continuous Distributions</dt>
 <dd>
 
 </dd>
-<dt>Mean</dt>
-<dd>
-
-</dd>
-<dt>Variance</dt>
-<dd>
-
-</dd>
-<dt>Standard Deviation</dt>
-<dd>
-
-</dd>
-<dt>Special Parametric Families of Univariate Distributions</dt>
-<dd>
-
-</dd>
-<dt>Continuous Distributions</dt>
-<dd>
-
-</dd>
-<dt>Normal Distribution</dt>
+<dt>Definition 2.10: Normal Distribution</dt>
 <dd>
 <p>A random variable <span class="math inline">\(X\)</span> is defined to be normally distributed if its density is given by</p>
 <p><span class="math display">\[
